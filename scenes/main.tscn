@@ -1,3 +1,17 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/placement.gd" type="Script" id=1]
+[ext_resource path="res://scenes/piece.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=3]
 
 [node name="Main" type="Node2D"]
+
+[node name="PieceGrid" type="Node2D" parent="."]
+script = ExtResource( 1 )
+piece_prefab = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 3 )
+speed = 100.0
+max_speed = 1000.0
