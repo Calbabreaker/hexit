@@ -12,6 +12,10 @@ piece_prefab = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
+smoothing_speed = 10.0
 script = ExtResource( 3 )
-speed = 100.0
-max_speed = 1000.0
+speed = 800.0
+zoom_speed = 0.1
+min_zoom = 0.5
+max_zoom = 2.0
