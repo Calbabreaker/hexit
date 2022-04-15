@@ -13,11 +13,10 @@ func fit_to_size():
 	var size = texture.get_size()
 	scale = SIZE_VECTOR * 2 / size
 	
-# Rounds hex the coordinates to the nearest integer
+# Rounds the hex coordinates to the nearest integer
 static func axial_round(hex: Vector2) -> Vector2:
 	var grid = hex.round()
 	hex -= grid
-	
 	if pow(hex.x, 2) >= pow(hex.y, 2):
 		grid.x += round(hex.x + hex.y / 2)
 	if pow(hex.x, 2) < pow(hex.y, 2):
@@ -27,7 +26,7 @@ static func axial_round(hex: Vector2) -> Vector2:
 # Converts pixel coordinates to hexagon grid coordinates
 static func pixel_to_hex(pixel: Vector2) -> Vector2:
 	var x = (2.0/3 * pixel.x) / SIZE
-	var y = (-1.0/3 * pixel.x  +  sqrt(3.0)/3 * pixel.y) / SIZE
+	var y = (-1.0/3 * pixel.x + sqrt(3.0)/3 * pixel.y) / SIZE
 	return axial_round(Vector2(x, y))
 
 # Converts hexagon grid coordinates to pixel coordinates
