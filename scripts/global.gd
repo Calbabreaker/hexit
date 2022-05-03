@@ -1,0 +1,7 @@
+extends Node
+
+var piece_sides = [PieceSide.new("triangle"), PieceSide.new(), PieceSide.new("circle")]
+
+# Creates a vector with a random xy
+static func vector_random(p_min: int, p_max: int) -> Vector2:
+	return Vector2(rand_range(p_min, p_max), rand_range(p_min, p_max))

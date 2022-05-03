@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Piece",
 "language": "GDScript",
 "path": "res://scripts/piece.gd"
+}, {
+"base": "Reference",
+"class": "PieceSide",
+"language": "GDScript",
+"path": "res://scripts/piece_side.gd"
 } ]
 _global_script_class_icons={
-"Piece": ""
+"Piece": "",
+"PieceSide": ""
 }
 
 [application]
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="Godot-game"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [input]
 

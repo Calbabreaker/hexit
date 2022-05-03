@@ -9,6 +9,7 @@
 [node name="PieceGrid" type="Node2D" parent="."]
 script = ExtResource( 1 )
 piece_prefab = ExtResource( 2 )
+score_label_path = NodePath("../CanvasLayer/ScoreLabel")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -19,3 +20,10 @@ speed = 800.0
 zoom_speed = 0.1
 min_zoom = 0.5
 max_zoom = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Score: <int>"

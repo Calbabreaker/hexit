@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/piece.svg-dd022f4619756dc5d99bbfc628373bdb.stex"
+path="res://.import/triangle.svg-2246efe0f7e4fdb6705e62b9f62230d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/piece.svg"
-dest_files=[ "res://.import/piece.svg-dd022f4619756dc5d99bbfc628373bdb.stex" ]
+source_file="res://assets/triangle.svg"
+dest_files=[ "res://.import/triangle.svg-2246efe0f7e4fdb6705e62b9f62230d2.stex" ]
 
 [params]
 
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.0
+svg/scale=1.0
