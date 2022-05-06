@@ -15,13 +15,13 @@ _global_script_classes=[ {
 "path": "res://scripts/piece.gd"
 }, {
 "base": "Reference",
-"class": "PieceSide",
+"class": "SideType",
 "language": "GDScript",
-"path": "res://scripts/piece_side.gd"
+"path": "res://scripts/side_type.gd"
 } ]
 _global_script_class_icons={
 "Piece": "",
-"PieceSide": ""
+"SideType": ""
 }
 
 [application]

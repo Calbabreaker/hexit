@@ -1,6 +1,6 @@
 extends Node
 
-var piece_sides = [PieceSide.new("triangle"), PieceSide.new(), PieceSide.new("circle")]
+var piece_sides = [SideType.new("triangle"), SideType.new(), SideType.new("circle")]
 
 # Creates a vector with a random xy
 static func vector_random(p_min: int, p_max: int) -> Vector2:

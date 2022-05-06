@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/piece.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=3]
+[ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
 
 [node name="Main" type="Node2D"]
 
@@ -10,6 +15,10 @@
 script = ExtResource( 1 )
 piece_prefab = ExtResource( 2 )
 score_label_path = NodePath("../CanvasLayer/ScoreLabel")
+
+[node name="Tween" type="Tween" parent="PieceGrid"]
+repeat = true
+playback/repeat = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -21,9 +30,14 @@ zoom_speed = 0.1
 min_zoom = 0.5
 max_zoom = 2.0
 
+[node name="Tween" type="Tween" parent="Camera2D"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 15.0
+margin_top = 8.0
+margin_right = 147.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 1 )
 text = "Score: <int>"
