@@ -30,8 +30,6 @@ zoom_speed = 0.1
 min_zoom = 0.5
 max_zoom = 2.0
 
-[node name="Tween" type="Tween" parent="Camera2D"]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
