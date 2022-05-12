@@ -4,5 +4,7 @@
 [ext_resource path="res://scripts/piece.gd" type="Script" id=2]
 
 [node name="Piece" type="Sprite"]
+position = Vector2( 0, 17 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, 12 )
 script = ExtResource( 2 )

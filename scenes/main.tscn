@@ -3,31 +3,9 @@
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/piece.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=3]
-[ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
-
-[sub_resource type="ParticlesMaterial" id=1]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 1.0
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 200.0
-damping_random = 0.1
-scale = 5.0
-scale_random = 0.4
-color = Color( 0.0784314, 0.196078, 0.423529, 1 )
-hue_variation = 0.02
-hue_variation_random = 1.0
-
-[sub_resource type="DynamicFont" id=2]
-size = 24
-font_data = ExtResource( 4 )
+[ext_resource path="res://assets/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/grid.svg" type="Texture" id=5]
+[ext_resource path="res://scripts/background.gd" type="Script" id=6]
 
 [node name="Main" type="Node2D"]
 
@@ -35,20 +13,11 @@ font_data = ExtResource( 4 )
 script = ExtResource( 1 )
 piece_prefab = ExtResource( 2 )
 score_label_path = NodePath("../CanvasLayer/ScoreLabel")
+remaining_label_path = NodePath("../CanvasLayer/RemainingLabel")
 
 [node name="Tween" type="Tween" parent="PieceGrid"]
 repeat = true
 playback/repeat = true
-
-[node name="PlacementPS" type="Particles2D" parent="PieceGrid"]
-z_index = 1
-emitting = false
-amount = 20
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-process_material = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -58,7 +27,7 @@ script = ExtResource( 3 )
 speed = 800.0
 zoom_speed = 0.1
 min_zoom = 0.5
-max_zoom = 2.0
+max_zoom = 1.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -67,5 +36,26 @@ margin_left = 15.0
 margin_top = 8.0
 margin_right = 147.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 text = "Score: <int>"
+
+[node name="RemainingLabel" type="Label" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = -45.0
+margin_right = 68.0
+margin_bottom = -11.0
+custom_fonts/font = ExtResource( 4 )
+text = "dfgfg"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 4000, 4000 )
+
+[node name="Grid" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 4000 )
+script = ExtResource( 6 )
