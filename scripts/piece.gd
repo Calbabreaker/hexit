@@ -6,9 +6,9 @@ const SIZE := 30
 const SIZE_VECTOR := Vector2(SIZE, SIZE)
 
 # The offset index vector of each hexagonal side to go in that direction in a grid array starting at the top going clockwise
-const SIDE_OFFSETS := [Vector2(0, -1), Vector2(1, -1), Vector2(0, 1), Vector2(1, 1)]
+const SIDE_OFFSETS := [Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0)]
 
-# Array of each the 6 sides containing an array of side types
+# Array of each the 6 sides containing the side type
 var sides := []
 
 func _ready() -> void:
@@ -27,10 +27,9 @@ func set_sides():
 		var side_angle = i / 6.0 * TAU + PI / 2 # The angle of the side of hexagonal in radians
 		var side_position = Vector2(SIZE * 1.6, 0).rotated(side_angle)
 		
-		var side_types = []
-		sides.append(side_types)
-		
-		var side_type = Global.piece_sides[randi() % len(Global.piece_sides)]
+		# Choose a random side type
+		var side_type = Global.PIECE_SIDES[randi() % len(Global.PIECE_SIDES)]
+		sides.append(side_type)
 		
 		for a in range(randi() % 3 + 1):
 			# Create the sprite with some variance
@@ -39,11 +38,15 @@ func set_sides():
 			side_sprite.position = side_position + Global.vector_random(-SIZE / 2, 0)
 			side_sprite.rotation = randf() * TAU
 			add_child(side_sprite)
-			side_types.append(side_type)
 
-func loop_through_surrounding_sides(callback: FuncRef, self_hex_pos: Vector2):
+# Call the inputed function with every side of the piece and side of the piece it touches
+func loop_through_sides(callback: FuncRef, self_hex_pos: Vector2):
 	for i in range(6):
-		var side_piece = self_hex_pos + SIDE_OFFSETS[i]
+		var touching_piece = Global.grid.get(self_hex_pos + SIDE_OFFSETS[i])
+		if touching_piece != null:
+			var touching_side = touching_piece.sides[(i + 3) % 6]
+			print(touching_side)
+			callback.call_func(sides[i], touching_side)
 		
 # Rounds the hex coordinates to the nearest integer
 static func axial_round(hex: Vector2) -> Vector2:

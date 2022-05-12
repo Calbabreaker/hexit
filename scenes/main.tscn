@@ -1,11 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/piece.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=3]
 [ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 200.0
+damping_random = 0.1
+scale = 5.0
+scale_random = 0.4
+color = Color( 0.0784314, 0.196078, 0.423529, 1 )
+hue_variation = 0.02
+hue_variation_random = 1.0
+
+[sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 4 )
 
@@ -19,6 +39,16 @@ score_label_path = NodePath("../CanvasLayer/ScoreLabel")
 [node name="Tween" type="Tween" parent="PieceGrid"]
 repeat = true
 playback/repeat = true
+
+[node name="PlacementPS" type="Particles2D" parent="PieceGrid"]
+z_index = 1
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -37,5 +67,5 @@ margin_left = 15.0
 margin_top = 8.0
 margin_right = 147.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Score: <int>"
