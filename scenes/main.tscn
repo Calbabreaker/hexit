@@ -29,8 +29,8 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 script = ExtResource( 3 )
-speed = 600.0
-zoom_speed = 0.1
+speed = 800.0
+zoom_speed = 0.05
 min_zoom = 0.5
 max_zoom = 1.5
 
@@ -110,6 +110,7 @@ align = 1
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -1
 motion_mirroring = Vector2( 4000, 4000 )
 
 [node name="Grid" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
