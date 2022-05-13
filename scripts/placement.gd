@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# If the mouse is pressed and can place a piece there
-	print(event is InputEventMouseButton)
 	if event.is_action_released("ui_click") && can_place_piece(mouse_hex_pos):
 		# Reset the ghost piece and put it inside the grid
 		tween.remove(ghost_piece)

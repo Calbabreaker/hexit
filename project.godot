@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot-game"
+config/name="Hexit"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://assets/icon.svg"
 

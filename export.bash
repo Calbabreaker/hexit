@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_NAME="anti-flux"
+PROJECT_NAME="hexit"
 
 green=`tput bold setaf 2`
 reset=`tput sgr0`
