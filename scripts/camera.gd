@@ -43,3 +43,7 @@ func zoom_camera(zoom_factor: float, mouse_position: Vector2):
 	var end_zoom = Vector2.ONE * pow(zoom_scale, 2)
 	position += ((viewport_size * 0.5) - mouse_position) * (end_zoom-zoom)
 
+# When button pressed reset camera zoom and position
+func _on_Button_pressed() -> void:
+	position = Vector2(0, 0)
+	zoom_scale = 1

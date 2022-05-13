@@ -13,10 +13,11 @@ script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -21.0
-margin_top = -6.0
+margin_top = -47.0
 margin_right = 87.0
-margin_bottom = 229.0
+margin_bottom = 188.0
 rect_scale = Vector2( 0.4, 0.4 )
 custom_fonts/font = ExtResource( 1 )
 text = "sdfaw"
 align = 1
+valign = 1
