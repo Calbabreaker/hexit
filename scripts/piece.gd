@@ -24,7 +24,7 @@ func set_sides():
 	# Place random side types on each of the six sides
 	for i in range(6):
 		var side_type
-		# 25% chance side type to change to have groups of side types
+		# 25% chance for side type to change to have groups of side types
 		if i != 0 and randf() > 0.25:
 			side_type = sides[i - 1]
 		else:
@@ -46,16 +46,6 @@ func set_sides():
 		var side_angle = i / 6.0 * TAU + PI / 2 # The angle of the side of hexagonal in radians
 		var side_position = Vector2(SIZE * 1.8, 0).rotated(side_angle)
 		side_sprite.position = side_position + Global.vector_random(-SIZE / 3, SIZE / 3)
-
-# Call the inputed function with every side of the piece and side of the piece it touches
-func loop_through_sides(callback: FuncRef, self_hex_pos: Vector2):
-	for i in range(6):
-		# Get touching piece
-		var touching_piece = Global.grid.get(self_hex_pos + SIDE_OFFSETS[i])
-		if touching_piece != null:
-			# Get touching side
-			var touching_side = touching_piece.sides[(i + 3) % 6]
-			callback.call_func(sides[i], touching_side)
 
 # Rounds the hex coordinates to the nearest integer
 static func axial_round(hex: Vector2) -> Vector2:

@@ -39,12 +39,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		Global.grid[mouse_hex_pos] = ghost_piece
 		
 		# Calculate score and pieces remaining
-		var prev_score = score
-		ghost_piece.loop_through_sides(funcref(self, "calc_connection_score"), mouse_hex_pos)
-		var score_diff = score - prev_score
-		# Add 1 piece for 200 score obtained during the placement and 1 more for every subscicuent 100 (100 -> 0, 200 -> 1, 300 -> 2, ...)
-		var pieces_to_add = max((score - prev_score) / 100 - 1, 0)
-		set_remaining(remaining + pieces_to_add - 1)
+		var matching_sides = get_matching_sides(ghost_piece, mouse_hex_pos)
+		
+		# Exponential growth of score rewarded for # of matching sides (0 -> 0, 1 -> 100, 2 -> 200, 3 -> 400, 4 -> 800) 
+		var score_diff = 0 if matching_sides == 0 else pow(2, (matching_sides - 1)) * 100
+		set_score(score + score_diff)
+		
+		# Order of the increase in piece added (1 -> 0, 2 -> 1, 3 -> 3, 4 -> 5, ...)
+		var pieces_to_add =  0 if matching_sides <= 1 else (matching_sides - 2) * 2 + 1
+		set_remaining(remaining + pieces_to_add - 1) # Add the number of pieces and take one away
 		
 		# Only show text if obtained score and/or piece(s)
 		var text := ""
@@ -59,9 +62,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		set_ghost_piece()
 
-func calc_connection_score(side: SideType, touching_side: SideType):
-	if side == touching_side:
-		set_score(score + 100)
+# Get number of sides the the pieces matches
+func get_matching_sides(piece: Piece, piece_hex_pos: Vector2):
+	var count := 0
+	for i in range(6):
+		# Get touching piece
+		var touching_piece = Global.grid.get(piece_hex_pos + Piece.SIDE_OFFSETS[i])
+		if touching_piece != null:
+			# Get touching side
+			var touching_side = touching_piece.sides[(i + 3) % 6]
+			if piece.sides[i] == touching_side:
+				count += 1
+	return count
 	
 # Checks if hex_pos is not on a piece
 func can_place_piece(hex_pos: Vector2) -> bool:
