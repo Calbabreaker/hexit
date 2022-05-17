@@ -24,8 +24,8 @@ func set_sides():
 	# Place random side types on each of the six sides
 	for i in range(6):
 		var side_type
-		# 25% chance for side type to change to have groups of side types
-		if i != 0 and randf() > 0.25:
+		# 70% chance for the side type to be the same to have groups of side types
+		if i != 0 and randf() < 0.70:
 			side_type = sides[i - 1]
 		else:
 			# Else choose a random side type

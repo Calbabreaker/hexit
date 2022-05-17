@@ -25,11 +25,10 @@ export_as() {
     fi
 }
 
-export_as HTML5 $PROJECT_NAME-html/index.html &
-export_as "Windows Desktop" $PROJECT_NAME-windows/$PROJECT_NAME-windows.exe &
-export_as "Linux/X11" $PROJECT_NAME-linux/$PROJECT_NAME-linux.x86_64 &
-export_as "Mac OSX" $PROJECT_NAME-macos.zip &
-wait
+export_as HTML5 $PROJECT_NAME-html/index.html
+export_as "Windows Desktop" $PROJECT_NAME-windows/$PROJECT_NAME-windows.exe
+export_as "Linux/X11" $PROJECT_NAME-linux/$PROJECT_NAME-linux.x86_64
+export_as "Mac OSX" $PROJECT_NAME-macos.zip
 
 printf "\nPush to github pages? [y/N] "
 read input

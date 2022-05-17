@@ -17,11 +17,13 @@ var mouse_hex_pos: Vector2
 var remaining: int
 
 func _ready() -> void:
+	# Set the default values 
 	set_score(0)
 	set_remaining(20)
 	set_ghost_piece()
 	
 func _process(delta: float) -> void:
+	# If the ghost piece is not here then do nothing
 	if ghost_piece == null:
 		return
 		
@@ -47,7 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		# Order of the increase in piece added (1 -> 0, 2 -> 1, 3 -> 3, 4 -> 5, ...)
 		var pieces_to_add =  0 if matching_sides <= 1 else (matching_sides - 2) * 2 + 1
-		set_remaining(remaining + pieces_to_add - 1) # Add the number of pieces and take one away
+		set_remaining(remaining + pieces_to_add - 1) # Add the number of pieces awarded and take one away
 		
 		# Only show text if obtained score and/or piece(s)
 		var text := ""
@@ -80,10 +82,12 @@ func can_place_piece(hex_pos: Vector2) -> bool:
 	return !Global.grid.has(mouse_hex_pos) and ghost_piece != null
 
 func set_ghost_piece():
+	# Don't allow the user to place anymore if no pieces remain
 	if remaining == 0:
 		ghost_piece = null
 		return
 	
+	# Create an instance of the piece object which will act as a ghost showing where the piece will be placed at
 	ghost_piece = piece_prefab.instance()
 	add_child(ghost_piece)
 	
@@ -104,6 +108,7 @@ func set_remaining(new_remaining):
 		remaining_label.hide()
 		lose_panel.show()
 
+# When the reset button is pressed reset the grid map and reload the scene
 func _on_ResetButton_pressed() -> void:
 	Global.grid = {}
 	get_tree().change_scene("res://scenes/main.tscn")
